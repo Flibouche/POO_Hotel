@@ -2,28 +2,48 @@
 
 class Room {
 
+    private Hotel $hotel;
     private int $idRoom;
     private int $roomNumber;
-    private int $roomBeds;
+    private int $nbBeds;
     private float $price;
     private bool $wifi = false;
     private bool $isBooked = false;
+    private array $reservations;
 
     private static $nbRoom = 0;
 
     public function __construct(
+        Hotel $hotel,
         int $idRoom,
         int $roomNumber,
-        int $roomBeds,
+        int $nbBeds,
         float $price
         ) {
+        $this->hotel = $hotel;
         self::$nbRoom++;
         $this->idRoom = self::$nbRoom;
         $this->roomNumber = $roomNumber;
-        $this->roomBeds = $roomBeds;
+        $this->nbBeds = $nbBeds;
         $this->price = $price;
+        $this->hotel->addRoom($this);
+        $this->reservations = [];
     }
 
+    //===================== Get/Set Hotel =====================// 
+    
+    public function getHotel() : Hotel
+    {
+        return $this->hotel;
+    }
+    
+    public function setHotel(Hotel $hotel)
+    {
+        $this->hotel = $hotel;
+        
+        return $this;
+    }
+    
     //===================== ID Room =====================// 
 
     public function getIdRoom() : int
@@ -54,14 +74,14 @@ class Room {
 
     //===================== Room Beds =====================// 
 
-    public function getRoomBeds() : int
+    public function getNbBeds() : int
     {
-        return $this->roomBeds;
+        return $this->nbBeds;
     }
 
-    public function setRoomBeds(int $roomBeds)
+    public function setNbBeds(int $nbBeds)
     {
-        $this->roomBeds = $roomBeds;
+        $this->nbBeds = $nbBeds;
 
         return $this;
     }
@@ -107,6 +127,33 @@ class Room {
 
         return $this;
     }
+
+    //===================== Reservation =====================//
+    
+    public function getReservations() : array
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(array $reservations)
+    {
+        $this->reservations = $reservations;
+
+        return $this;
+    }
+
+    public function addReservation(Booking $reservation)
+    {
+        $this->reservations[] = $reservation;
+    }
+
+    //===================== getInfos =====================//
+    
+    public function getInfos()
+    {
+        return "Hotel : $this->hotel Chambre : $this->idRoom ($this->nbBeds lits - $this->price € - Wifi : XX)";
+    }  
+
 }
 
 ?>

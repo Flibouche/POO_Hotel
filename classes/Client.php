@@ -5,6 +5,7 @@ class Client {
     private int $idClient;
     private string $lastName;
     private string $firstName;
+    private array $reservations;
 
     private static $nbClient = 0;
 
@@ -17,6 +18,7 @@ class Client {
         $this->idClient = self::$nbClient;
         $this->lastName = $lastName;
         $this->firstName = $firstName;
+        $this->reservations = [];
     }
 
     //===================== ID Client =====================// 
@@ -60,6 +62,43 @@ class Client {
 
         return $this;
     }
+    
+    //===================== Reservation =====================//
+    
+    public function getReservations() : array
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(array $reservations)
+    {
+        $this->reservations = $reservations;
+
+        return $this;
+    }
+
+    public function addReservation(Booking $reservation)
+    {
+        $this->reservations[] = $reservation;
+    }
+
+    //===================== getInfos =====================//
+    
+    public function getInfos()
+    {
+        return "Réservation de $this <br>
+        
+        
+        Total :  €";
+    }
+    
+    //===================== toString =====================//
+    
+    public function __toString()
+    {
+        return $this->firstName." ".$this->lastName;
+    }
+
 }
 
 ?>

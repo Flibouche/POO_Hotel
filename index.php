@@ -29,12 +29,21 @@ $regentRoom1 = new Room($hotel2, 4, 24, 2, 120);
 $regentRoom2 = new Room($hotel2, 5, 02, 3, 200);
 $regentRoom3 = new Room($hotel2, 6, 15, 2, 300);
 
+//===================== Booking =====================//
+
+$booking1 = new Booking($hiltonRoom1, $client2, 1, "01-01-2021", "01-01-2021");
+
+//===================== Actions =====================//
+
 
 echo $hotel1->getInfos();
 
 echo $client1->getInfos();
-echo "<br>";
+
 echo $hiltonRoom1->getInfos();
+
+echo $hotel1->getReservations();
+
 
 
 ?>

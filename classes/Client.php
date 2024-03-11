@@ -89,7 +89,7 @@ class Client {
         return "Réservation de $this <br>
         
         
-        Total :  €";
+        Total :  €<br><br>";
     }
     
     //===================== toString =====================//

@@ -151,8 +151,15 @@ class Room {
     
     public function getInfos()
     {
-        return "Hotel : $this->hotel Chambre : $this->idRoom ($this->nbBeds lits - $this->price € - Wifi : XX)";
+        return "Hotel : $this->hotel / Chambre : $this->roomNumber ($this->nbBeds lits - $this->price € - Wifi : XX)<br><br>";
     }  
+
+    //===================== toString =====================//
+    
+    public function __toString()
+    {
+        return "Chambre $this->roomNumber";
+    }
 
 }
 

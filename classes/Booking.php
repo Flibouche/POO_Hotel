@@ -1,6 +1,6 @@
 <?php
 
-class Reservation {
+class Booking {
 
     private Room $room;
     private Client $client;
@@ -14,7 +14,7 @@ class Reservation {
         Room $room,
         Client $client,
         int $idReservation,
-        string $dateDeparture,
+        string $dateReservation,
         string $dateDeparture
         ) {
         $this->room = $room;
@@ -23,6 +23,9 @@ class Reservation {
         $this->idReservation = self::$nbReservation;
         $this->dateReservation = new DateTime($dateReservation);
         $this->dateDeparture = new DateTime($dateDeparture);
+        $this->room->addReservation($this);
+        $this->client->addReservation($this);
+        $this->room->getHotel()->addReservation($this);
     }
 
     //===================== Get Room =====================// 
@@ -71,7 +74,7 @@ class Reservation {
 
     public function getDateReservation() : string
     {
-        return $this->dateReservation;
+        return $this->dateReservation->format("d-m-Y");
     }
  
     public function setDateReservation(string $dateReservation)
@@ -85,7 +88,7 @@ class Reservation {
 
     public function getDateDeparture() : string
     {
-        return $this->dateDeparture;
+        return $this->dateDeparture->format("d-m-Y");
     }
  
     public function setDateDeparture(string $dateDeparture)

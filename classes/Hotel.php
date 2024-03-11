@@ -7,6 +7,7 @@ class Hotel {
     private string $address;
     private int $nbRooms;
     private array $rooms;
+    private array $reservations;
 
     private static $nbHotel = 0;
 
@@ -22,6 +23,7 @@ class Hotel {
         $this->address = $address;
         $this->nbRooms = $nbRooms;
         $this->rooms = [];
+        $this->reservations = [];
     }
 
 //===================== ID Hotel =====================// 
@@ -99,6 +101,25 @@ class Hotel {
         $this->rooms[] = $room;
     }
 
+    //===================== Reservation =====================//
+
+    public function getReservations() : array
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(array $reservations)
+    {
+        $this->reservations = $reservations;
+
+        return $this;
+    }
+
+    public function addReservation(Booking $reservation)
+    {
+        $this->reservations[] = $reservation;
+    }
+
     //===================== Room Booked =====================//
 
     public function roomBooked()
@@ -113,9 +134,22 @@ class Hotel {
         return "$this->name <br>
         Nombre de chambres : $this->nbRooms <br>
         Nombre de chambres réservées : <br>
-        Nombre de chambres disponibles : <br>";
+        Nombre de chambres disponibles : <br><br>";
     }
+
+    //===================== getReservations =====================//
     
+    public function getReservations()
+    {
+        $result = "Réservation de l'hôtel $this<br><br>";
+
+        foreach($this->reservations as $reservation) {
+            $result .= $reservation->getClient()." - Chambre ".$reservation->getRoom()." du ".$reservation->getDateReservation()." au ".$reservation->getDateDeparture();
+        }
+
+        return $result;
+    }
+
     //===================== __toString =====================//
 
     public function __toString()

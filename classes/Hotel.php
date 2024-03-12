@@ -107,35 +107,56 @@ class Hotel {
     
     public function getInfos()
     {
+        $result = count($this->rooms) - count($this->reservations);
         return "<h2>$this->name </h2>
         $this->address <br>
         Nombre de chambres : ".count($this->rooms)." <br>
-        Nombre de chambres réservées : ".count($this->reservations)."<br>";
-        $result = $this->rooms - $this->reservations;
-        "Nombre de chambres disponibles : ".$result."<br><br>";
+        Nombre de chambres réservées : ".count($this->reservations)."<br>
+        Nombre de chambres disponibles : ".$result."<br><br>";
     }
 
     //===================== getInfosReservations =====================//
     
-    // public function getInfosReservations()
-    // {
-    //     $result = "<h3>Réservation de l'hôtel $this</h3>";
+    public function getInfosReservations()
+    {
+        $result = "<h3>Réservation de l'hôtel $this</h3>";
 
-    //     if($this->rooms->getIsBooked() >= 1)
-    //         foreach($this->reservations as $reservation) {
-    //             $result .= $reservation->getClient()." - ".$reservation->getRoom()." - du ".$reservation->getDateReservation()." au ".$reservation->getDateDeparture()."<br>";
-    //     } else {
-    //             echo "Aucune réservation !";
-    //     }
-
-    //     return $result;
-    // }
+        if(count($this->reservations) == 0) {
+            $result .= "Aucune réservation !";            
+        } else {
+            foreach($this->reservations as $reservation) {
+                $result .= $reservation->getClient()." - ".$reservation->getRoom()." - du ".$reservation->getDateReservation()." au ".$reservation->getDateDeparture()."<br>";
+            }
+        }
+            
+        return $result;
+    }
 
     //===================== getRoomStatuts =====================//
 
     public function getRoomStatuts()
     {
-
+        $result = "<h3><span class='statut'>Statuts des chambres de </span>$this</h3>";
+        $result .= "<table>
+                        <thead>
+                            <tr>
+                                <th id='room'>CHAMBRE</th>
+                                <th id='price'>PRIX</th>
+                                <th id='wifi'>WIFI</th>
+                                <th id='etat'>ETAT</th>
+                            </tr>
+                        </thead>
+                    </thead>
+                    <tbody>";
+        foreach($this->rooms as $room) {
+            $result .= "<tr>
+                            <td>".$room->getRoomNumber()."</td>
+                            <td>".$room->getPrice()." €</td>
+                            <td>".$room->internet()."</td>
+                            <td><span class ='booked'>".$room->availability()."</span></td>";
+        }
+        $result .= "</tbody></table>";
+        return $result;
     }
 
 

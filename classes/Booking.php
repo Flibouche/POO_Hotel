@@ -99,6 +99,25 @@ class Booking {
         return $this;
     }
 
+    //===================== Total Night =====================// 
+
+    public function totalNight()
+    {
+        $diff = date_diff($this->dateReservation, $this->dateDeparture);
+        $result = $diff->format("%a");
+        if ($diff->days === 0) {
+            return 1;
+        }
+        return $result;
+    }
+
+    //===================== Total Reservation =====================// 
+
+    public function totalReservation()
+    {
+        $result = $this->getRoom()->getPrice() * $this->totalNight();        
+        return $result;
+    }
 }
 
 ?>

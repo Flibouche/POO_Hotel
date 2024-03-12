@@ -82,18 +82,30 @@ class Client {
         $this->reservations[] = $reservation;
     }
 
+    //===================== totalPrice =====================//
+
+    public function totalPrice()
+    {
+        $totalReservationsClient = 0;
+        foreach($this->reservations as $resa) {
+            $totalReservationsClient += $resa->totalReservation();
+        }
+
+        return $totalReservationsClient;
+    }
+
     //===================== getInfos =====================//
     
     public function getInfos()
     {
-        $result = "<h3>Réservation de $this</h3>";
+        $result = "<h3>Réservation de $this</h3>".count($this->reservations)." RÉSERVATION(S)<br>";
         
         foreach($this->reservations as $reservation) {
             $result .= $reservation->getRoom()->getHotel()." / ".$reservation->getRoom()." (".$reservation->getRoom()->getNbBeds()." lits - ".$reservation->getRoom()->getPrice()." € - Wifi : ".$reservation->getRoom()->internet()." )"." du ".$reservation->getDateReservation(). " au ".$reservation->getDateDeparture()."<br>";
         }
         
+        $result .= "Total : ".$this->totalPrice()." € <br>";
         return $result;
-        echo "Total :  €<br><br>";
     }
     
     //===================== toString =====================//

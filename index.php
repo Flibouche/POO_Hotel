@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice de POO : Hotel</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
 <?php
 
 echo "<h1>Exercice de POO : Hotel</h1>";
@@ -33,25 +43,40 @@ $regentRoom3 = new Room($hotel2, 6, 15, 2, 300);
 //===================== Booking =====================//
 
 $booking1 = new Booking($hiltonRoom1, $client2, 1, "01-01-2021", "01-01-2021");
-$booking2 = new Booking($hiltonRoom2, $client1, 2, "11-03-2021", "11-01-2021");
+$booking2 = new Booking($hiltonRoom2, $client1, 2, "11-03-2021", "11-03-2021");
 $booking3 = new Booking($hiltonRoom3, $client1, 3, "01-04-2021", "17-04-2021");
 
 //===================== Actions =====================//
 
-
 echo $hotel1->getInfos();
+echo $hotel2->getInfos();
 
 echo $client1->getInfos();
 echo $client2->getInfos();
 
-echo $hiltonRoom1->getInfos();
+// echo $hiltonRoom1->getInfos();
 
-// echo $hotel1->getInfosReservations();
-// echo $hotel2->getInfosReservations();
+echo $hotel1->getInfosReservations();
+echo $hotel2->getInfosReservations();
 
 // echo $hiltonRoom1->availability();
 // echo $regentRoom3->availability();
 
 echo $hotel1->getRoomStatuts();
 
+// echo "<br>";
+// echo $booking1->totalNight();
+// echo "<br>";
+// echo $booking3->totalNight();
+// echo "<br>";
+
+// echo $booking1->totalReservation();
+// echo "<br>";
+// echo $booking3->totalReservation();
+// echo "<br>";
+// echo $client1->totalPrice();
+
 ?>
+
+</body>
+</html>

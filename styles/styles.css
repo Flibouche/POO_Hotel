@@ -1,0 +1,23 @@
+table {
+    background-color: red;
+}
+
+#room {
+    color: gray;
+}
+
+#price {
+    color: gray;    
+}
+
+#wifi {
+    color: gray;    
+}
+
+#etat {
+    color: gray;
+}
+
+#room tbody {
+    color : blue;
+}

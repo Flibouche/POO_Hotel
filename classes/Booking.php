@@ -8,7 +8,7 @@ class Booking {
     private DateTime $dateReservation;
     private DateTime $dateDeparture;
 
-    private static $nbReservation = 0;
+    private static int $nbReservation = 0;
 
     public function __construct(
         Room $room,
@@ -26,6 +26,7 @@ class Booking {
         $this->room->addReservation($this);
         $this->client->addReservation($this);
         $this->room->getHotel()->addReservation($this);
+        $this->room->setIsBooked(true);
     }
 
     //===================== Get Room =====================// 

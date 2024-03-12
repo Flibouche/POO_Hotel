@@ -7,7 +7,7 @@ class Client {
     private string $firstName;
     private array $reservations;
 
-    private static $nbClient = 0;
+    private static int $nbClient = 0;
 
     public function __construct(
         int $idClient,
@@ -86,10 +86,14 @@ class Client {
     
     public function getInfos()
     {
-        return "Réservation de $this <br>
+        $result = "<h3>Réservation de $this</h3>";
         
+        foreach($this->reservations as $reservation) {
+            $result .= $reservation->getRoom()->getHotel()." / ".$reservation->getRoom()." (".$reservation->getRoom()->getNbBeds()." lits - ".$reservation->getRoom()->getPrice()." € - Wifi : ".$reservation->getRoom()->internet()." )"." du ".$reservation->getDateReservation(). " au ".$reservation->getDateDeparture()."<br>";
+        }
         
-        Total :  €<br><br>";
+        return $result;
+        echo "Total :  €<br><br>";
     }
     
     //===================== toString =====================//

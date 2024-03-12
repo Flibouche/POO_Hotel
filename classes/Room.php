@@ -7,18 +7,19 @@ class Room {
     private int $roomNumber;
     private int $nbBeds;
     private float $price;
-    private bool $wifi = false;
+    private bool $wifi = true;
     private bool $isBooked = false;
     private array $reservations;
 
-    private static $nbRoom = 0;
+    private static int $nbRoom = 0;
 
     public function __construct(
         Hotel $hotel,
         int $idRoom,
         int $roomNumber,
         int $nbBeds,
-        float $price
+        float $price,
+        bool $wifi = true
         ) {
         $this->hotel = $hotel;
         self::$nbRoom++;
@@ -26,6 +27,7 @@ class Room {
         $this->roomNumber = $roomNumber;
         $this->nbBeds = $nbBeds;
         $this->price = $price;
+        $this->wifi = $wifi;
         $this->hotel->addRoom($this);
         $this->reservations = [];
     }
@@ -115,7 +117,7 @@ class Room {
     }
 
     //===================== isBooked =====================// 
-
+    
     public function getIsBooked() : bool
     {
         return $this->isBooked;
@@ -124,8 +126,20 @@ class Room {
     public function setIsBooked(bool $isBooked)
     {
         $this->isBooked = $isBooked;
-
+        
         return $this;
+    }
+    
+    //===================== Availability =====================// 
+    
+    public function availability()
+    {
+        if(!$this->isBooked)
+        {
+            return "Available<br>";
+        } else {
+            return "Booked<br>";
+        }
     }
 
     //===================== Reservation =====================//
@@ -147,18 +161,30 @@ class Room {
         $this->reservations[] = $reservation;
     }
 
+    //===================== Internet =====================//
+    
+    public function internet()    
+    {
+        if($this->wifi)
+        {
+            return "Oui";
+        } else {
+            return "Non";
+        }
+    }
+
     //===================== getInfos =====================//
     
     public function getInfos()
     {
-        return "Hotel : $this->hotel / Chambre : $this->roomNumber ($this->nbBeds lits - $this->price € - Wifi : XX)<br><br>";
+        return "Hotel : $this->hotel / Chambre : $this->roomNumber ($this->nbBeds lits - $this->price € - Wifi : ".$this->internet().")<br><br>";
     }  
 
     //===================== toString =====================//
     
     public function __toString()
     {
-        return "Chambre $this->roomNumber";
+        return "Chambre : $this->roomNumber";
     }
 
 }

@@ -5,23 +5,20 @@ class Hotel {
     private int $idHotel;
     private string $name;
     private string $address;
-    private int $nbRooms;
     private array $rooms;
     private array $reservations;
 
-    private static $nbHotel = 0;
+    private static int $nbHotel = 0;
 
     public function __construct(
         int $idHotel,
         string $name,
         string $address,
-        int $nbRooms
         ) {
         self::$nbHotel++;
         $this->idHotel = self::$nbHotel;
         $this->name = $name;
         $this->address = $address;
-        $this->nbRooms = $nbRooms;
         $this->rooms = [];
         $this->reservations = [];
     }
@@ -68,20 +65,6 @@ class Hotel {
         return $this;
     }
 
-    //===================== NbRooms =====================// 
-
-    public function getNbRooms() : int
-    {
-        return $this->nbRooms;
-    }
-
-    public function setNbRooms(int $nbRooms)
-    {
-        $this->nbRooms = $nbRooms;
-
-        return $this;
-    }
-
     //===================== Get/Set Rooms =====================//
 
     public function getRooms() : array
@@ -120,35 +103,41 @@ class Hotel {
         $this->reservations[] = $reservation;
     }
 
-    //===================== Room Booked =====================//
-
-    public function roomBooked()
-    {
-
-    }
-
     //===================== getInfos =====================//
     
     public function getInfos()
     {
-        return "$this->name <br>
-        Nombre de chambres : $this->nbRooms <br>
-        Nombre de chambres réservées : <br>
-        Nombre de chambres disponibles : <br><br>";
+        return "<h2>$this->name </h2>
+        $this->address <br>
+        Nombre de chambres : ".count($this->rooms)." <br>
+        Nombre de chambres réservées : ".count($this->reservations)."<br>";
+        $result = $this->rooms - $this->reservations;
+        "Nombre de chambres disponibles : ".$result."<br><br>";
     }
 
-    //===================== getReservations =====================//
+    //===================== getInfosReservations =====================//
     
-    public function getReservations()
+    // public function getInfosReservations()
+    // {
+    //     $result = "<h3>Réservation de l'hôtel $this</h3>";
+
+    //     if($this->rooms->getIsBooked() >= 1)
+    //         foreach($this->reservations as $reservation) {
+    //             $result .= $reservation->getClient()." - ".$reservation->getRoom()." - du ".$reservation->getDateReservation()." au ".$reservation->getDateDeparture()."<br>";
+    //     } else {
+    //             echo "Aucune réservation !";
+    //     }
+
+    //     return $result;
+    // }
+
+    //===================== getRoomStatuts =====================//
+
+    public function getRoomStatuts()
     {
-        $result = "Réservation de l'hôtel $this<br><br>";
 
-        foreach($this->reservations as $reservation) {
-            $result .= $reservation->getClient()." - Chambre ".$reservation->getRoom()." du ".$reservation->getDateReservation()." au ".$reservation->getDateDeparture();
-        }
-
-        return $result;
     }
+
 
     //===================== __toString =====================//
 

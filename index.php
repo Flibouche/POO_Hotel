@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercice de POO : Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -49,34 +50,26 @@ $booking3 = new Booking($hiltonRoom3, $client1, 3, "01-04-2021", "17-04-2021");
 //===================== Actions =====================//
 
 echo $hotel1->getInfos();
+echo "<br>";
 echo $hotel2->getInfos();
+echo "<br>";
 
 echo $client1->getInfos();
+echo "<br>";
 echo $client2->getInfos();
-
-// echo $hiltonRoom1->getInfos();
+echo "<br>";
 
 echo $hotel1->getInfosReservations();
+echo "<br>";
 echo $hotel2->getInfosReservations();
-
-// echo $hiltonRoom1->availability();
-// echo $regentRoom3->availability();
+echo "<br>";
 
 echo $hotel1->getRoomStatuts();
-
-// echo "<br>";
-// echo $booking1->totalNight();
-// echo "<br>";
-// echo $booking3->totalNight();
-// echo "<br>";
-
-// echo $booking1->totalReservation();
-// echo "<br>";
-// echo $booking3->totalReservation();
-// echo "<br>";
-// echo $client1->totalPrice();
+echo "<br>";
+echo $hotel2->getRoomStatuts();
 
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

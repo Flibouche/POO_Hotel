@@ -137,7 +137,7 @@ class Hotel {
     public function getRoomStatuts()
     {
         $result = "<h3><span class='statut'>Statuts des chambres de </span>$this</h3>";
-        $result .= "<table>
+        $result .= "<table class='table table-striped'>
                         <thead>
                             <tr>
                                 <th id='room'>CHAMBRE</th>
@@ -149,11 +149,12 @@ class Hotel {
                     </thead>
                     <tbody>";
         foreach($this->rooms as $room) {
+            $classBooked = ($room->getIsBooked()) ? "text-bg-danger" : "text-bg-success";
             $result .= "<tr>
-                            <td>".$room->getRoomNumber()."</td>
+                            <td>".$room."</td>
                             <td>".$room->getPrice()." €</td>
                             <td>".$room->internet()."</td>
-                            <td><span class ='booked'>".$room->availability()."</span></td>";
+                            <td><span class='badge $classBooked'>".$room->availability()."</span></td>";
         }
         $result .= "</tbody></table>";
         return $result;

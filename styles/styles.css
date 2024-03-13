@@ -1,5 +1,10 @@
 table {
-    background-color: red;
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+
+thead {
+    font-weight: 700;
 }
 
 #room {
@@ -20,4 +25,20 @@ table {
 
 #room tbody {
     color : blue;
+}
+
+.booked {
+    color: white;
+    padding: 5px 15px;
+}
+
+.reserved {
+    background: red;
+}
+.notreserved {
+    background: green;
+}
+
+tbody > tr:nth-of-type(odd) {
+    background-color: gray;
 }

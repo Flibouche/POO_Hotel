@@ -98,7 +98,8 @@ class Client {
     
     public function getInfos()
     {
-        $result = "<h3>Réservation de $this</h3>".count($this->reservations)." RÉSERVATION(S)<br>";
+        $result = "<h3>Réservation de $this</h3>
+        <p  class ='badge text-bg-success'>".count($this->reservations)." RÉSERVATION(S)</p><br>";
         
         foreach($this->reservations as $reservation) {
             $result .= $reservation->getRoom()->getHotel()." / ".$reservation->getRoom()." (".$reservation->getRoom()->getNbBeds()." lits - ".$reservation->getRoom()->getPrice()." € - Wifi : ".$reservation->getRoom()->internet()." )"." du ".$reservation->getDateReservation(). " au ".$reservation->getDateDeparture()."<br>";
